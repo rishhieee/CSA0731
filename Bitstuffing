@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+void bitStuffing(char data[]) {
+    int i, count = 0;
+    char stuffedData[50]; // Array for output
+    int j = 0;
+
+    // Traverse the input data
+    for (i = 0; i < strlen(data); i++) {
+        stuffedData[j++] = data[i];
+
+        // Count consecutive '1's
+        if (data[i] == '1') {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        // Insert '0' after five consecutive '1's
+        if (count == 5) {
+            stuffedData[j++] = '0';
+            count = 0; // Reset counter
+        }
+    }
+
+    stuffedData[j] = '\0'; // End the string
+
+    printf("Stuffed Data: %s\n", stuffedData);
+}
+
+int main() {
+    char data[50];
+
+    // Input binary string
+    printf("Enter the binary data: ");
+    scanf("%s", data);
+
+    // Perform Bit Stuffing
+    bitStuffing(data);
+
+    return 0;
+}
